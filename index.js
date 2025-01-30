@@ -13,6 +13,7 @@ app.use(
       "https://studio.apollographql.com",
       "https://sbtadmin.vercel.app",
       "https://www.soilboostertechnologies.in",
+      "https://sbtweb.vercel.app"
     ], // Change this to your frontend's URL
     optionsSuccessStatus: 200,
   })
