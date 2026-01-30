@@ -37,6 +37,31 @@ const apolloServerStarter = async () => {
       useNewUrlParser: true,
     });
     console.log("database Connected....");
+
+ app.post("/crorder", async (req, res) => {
+      try {
+        const { amount } = req.body;
+        const currentDate = new Date();
+
+        const Order = await razorpay.orders.create({
+          amount: Number(amount * 100),
+          currency: "INR",
+          receipt: `${currentDate.getSeconds()}`,
+        });
+        res.status(200).json({
+          success: true,
+          order_id: Order.id,
+          amount: Number(amount * 100),
+        });
+      } catch (error) {
+        // console.error("Error creating order:", error);
+        res.status(500).json({
+          success: false,
+          error: "Error creating order",
+        });
+      }
+    });
+    
     app.get("/", (req, res) => {
       res.send("we are live!");
     });
